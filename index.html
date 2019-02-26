@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student List 2</title>
+    <link rel="stylesheet" href="studentlist.css" type="text/css" />
+  </head>
+  <body>
+    <h1>Students 1991</h1>
+    <main>
+      Select house:
+      <select class="filter" id="select">
+        <option value="All">All</option>
+        <option value="Hufflepuff">Hufflepuff</option>
+        <option value="Gryffindor">Gryffindor</option>
+        <option value="Ravenclaw">Ravenclaw</option>
+        <option value="Slytherin">Slytherin</option> </select
+      ><input type="button" id="filterButton" value="Show" />
+      <div class="wrapper">
+        <div class="Name-h"><h3>Student's name:</h3></div>
+        <div class="House-h"><h3>House:</h3></div>
+
+        <div class="scroller">
+          <div class="name"></div>
+          <div class="house"></div>
+        </div>
+      </div>
+
+      <template class="student">
+        <p class="name"></p>
+      </template>
+
+      <template class="location">
+        <p class="house"></p>
+      </template>
+    </main>
+
+    <script src="studentlist.js"></script>
+  </body>
+</html>

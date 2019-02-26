@@ -1,0 +1,122 @@
+body {
+    background-color: #2f6980;
+    color: #b3c8ce;
+  }
+  
+  .gryffindor {
+    background-color: #ce3a0a;
+    color: #fdb02e;
+  }
+  
+  .hufflepuf {
+    background-color: #ffc02a;
+    color: #0b0000;
+  }
+  
+  .ravenclaw {
+    background-color: #395f9d;
+    color: #e9ba36;
+  }
+  
+  .slytherin {
+    background-color: #588c39;
+    color: #c0b1c6;
+  }
+  
+  
+  .wrapper {
+    display: grid;
+    grid-template-columns: 15vw 8vw;
+    grid-template-rows: auto auto;
+    margin-left: 25vw;
+   /* transform: translate(-50%);*/
+    grid-template-areas: 
+    "area1 area2"
+    "area3 area3";
+  }
+  
+  .Name-h{
+      grid-area: area1;
+      text-transform: uppercase;
+      
+  }
+  
+  .House-h{
+      grid-area: area2;
+      text-transform: uppercase;
+  }
+  
+  .scroller{
+      grid-area: area3;
+  }
+  
+  }
+  
+  p {
+    font-size: 16px;
+  }
+  
+  .scroller{
+      display: grid;
+      grid-template-columns: 15vw 8vw;
+      grid-template-rows: auto;
+      grid-template-areas: 
+      "area11 area22";
+      height: 85vh;
+      overflow: auto;
+  }
+  
+  
+  .name{
+      grid-area: area11;
+  }
+  
+  .house{
+      grid-area: area22;
+  }
+  
+  /*Scrollbar style. Credits: https://css-tricks.com/the-current-state-of-styling-scrollbars/*/
+  
+  ::-webkit-scrollbar {
+      width: 12px;
+  
+  }
+  
+  ::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+      border-radius: 2px;
+      background:#829ea5;
+  }
+  
+  /*handle*/
+  ::-webkit-scrollbar-thumb {
+      border-radius: 2px;
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+      background: #b3c8ce;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #dce3e5;
+  }
+
+/*
+.gryffindor {
+    background-color: #ce3a0a;
+    color: #fdb02e
+}
+
+.hufflepuf {
+    background-color: #ffc02a;
+    color: #0b0000  
+}
+
+.ravenclaw {
+    background-color: #395f9d;
+    color: #e9ba36  
+}
+
+.slytherin {
+    background-color: #588c39;
+    color: #c0b1c6  
+}*/
