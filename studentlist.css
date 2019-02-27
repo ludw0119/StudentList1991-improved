@@ -51,6 +51,7 @@ grid-area: area03;
   grid-template-areas: 
   "area1 area2"
   "area3 area3";
+  height: 50vh;
 }
 
 .Name-h{
@@ -80,7 +81,7 @@ p {
     grid-template-rows: auto;
     grid-template-areas: 
     "area11 area22";
-    height: 85vh;
+    height: 70vh;
     overflow: auto;
 }
 

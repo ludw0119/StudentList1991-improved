@@ -10,6 +10,7 @@ let modal = document.querySelector(".modal");
 let modalClose = document.querySelector(".modalClose");
 let selectHouse = document.querySelector("#select");
 let selectSorting = document.querySelector("#sort");
+let filteringEffect = [];
 const arrayOfHouses = []; //to use with select
 const arrayOfStudents = []; //array that is used with the student template
 const urlToImages = "http://dont.know.yet/";
@@ -72,6 +73,7 @@ function showFilteredList() {
 
 function filterList() {
   let filteredList = arrayOfStudents;
+
   //filtering
   if (selectHouse.value === "All") {
     filteredList = arrayOfStudents;
@@ -92,14 +94,15 @@ function filterList() {
       return pupil.house === "Slytherin";
     });
   }
+  filteringEffect = filteredList;
   displayList(filteredList);
-  sort(filteredList);
+  //sort(filteredList);
 }
 
 /* --------------------------Sorting--------------------------------------------------------------------------------- */
 
 function sort() {
-  let filteredList = arrayOfStudents;
+  let filteredList = filteringEffect;
 
   if (selectSorting.value == "First Name") {
     //sort the array
@@ -173,7 +176,7 @@ function displayList(arrayOfStudentsFiltered) {
 }
 
 function showOneStudent() {
-  showStudentDetail(this.id.substring(7)); //"This" always refers to the element that calls the function,The substring() method cuts of here the first 7 letters
+  showStudentDetail(this.id.substring(7)); //"This" always refers to the element that calls the function (it is the span element created in f. displayList),The substring() method cuts of here the first 7 letters
 } //calls next function with id of clicked student
 
 function showStudentDetail(id) {
