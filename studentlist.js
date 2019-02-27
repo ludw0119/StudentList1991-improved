@@ -37,7 +37,7 @@ const student = {
   additionalName: "-additional name-",
   house: "-house-",
   studentID: 0,
-  imageUrl: "-image-",
+  imageUrl: "-student image-",
   crestUrl: "-image-"
 };
 
@@ -57,7 +57,12 @@ function prepareList(data2) {
 
     pupil.studentID = studentID;
     pupil.imageUrl =
-      urlToImages + pupil.firstName + " " + pupil.lastName + ".jpg";
+      "images/" +
+      pupil.lastName.toLowerCase() +
+      "_" +
+      name.substring(0, 1).toLowerCase() +
+      ".png"; //exemplary img filename: brown_l.png
+    urlToImages + pupil.firstName + " " + pupil.lastName + ".jpg";
     pupil.crestUrl = urlToCrests + pupil.firstName + " " + pupil.house + ".jpg";
     arrayOfStudents.push(pupil); //puts created student entry into an array
     studentID++;
