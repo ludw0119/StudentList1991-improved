@@ -17,7 +17,7 @@ const urlToCrests = "http://dont.know.yet/";
 
 function init() {
   //console.log("init");
-  fetch("http://petlatkea.dk/2019/hogwarts/students.json")
+  fetch("https://petlatkea.dk/2019/hogwarts/students.json")
     .then(promise => promise.json())
     .then(data => prepareList(data));
 
