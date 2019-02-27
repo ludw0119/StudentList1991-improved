@@ -6,30 +6,42 @@ let nameDiv = document.querySelector(".name");
 let houseDiv = document.querySelector(".house");
 let template1 = document.querySelector(".student");
 let template2 = document.querySelector(".location");
+let modal = document.querySelector(".modal");
+let modalClose = document.querySelector(".modalClose");
+let selectHouse = document.querySelector("#select");
+let selectSorting = document.querySelector("#sort");
 const arrayOfHouses = []; //to use with select
 const arrayOfStudents = []; //array that is used with the student template
-
-//A template for created object
-const student = {
-  firstName: "-first name-",
-  lastName: "-last name-",
-  additionalName: "-additional name-",
-  house: "-house-"
-};
+const urlToImages = "http://dont.know.yet/";
+const urlToCrests = "http://dont.know.yet/";
 
 function init() {
   //console.log("init");
-  fetch("https://petlatkea.dk/2019/hogwarts/students.json")
+  fetch("http://petlatkea.dk/2019/hogwarts/students.json")
     .then(promise => promise.json())
     .then(data => prepareList(data));
 
   document
     .querySelector("#filterButton")
     .addEventListener("click", showFilteredList);
+
+  document.querySelector("#sortingButton").addEventListener("click", sort);
 }
+/* --------------------------Preparing additional object that is needed for filtering-------------------- */
+
+//A template for created object
+const student = {
+  firstName: "-first name-",
+  lastName: "-last name-",
+  additionalName: "-additional name-",
+  house: "-house-",
+  studentID: 0,
+  imageUrl: "-image-",
+  crestUrl: "-image-"
+};
 
 function prepareList(data2) {
-  console.log(data2);
+  let studentID = 0;
   data2.forEach(element => {
     let pupil = Object.create(student); //New object called "pupil" - Object.create() method creates a new object, using an existing object as the prototype of the newly created object.
     //console.log(pupil);
@@ -42,43 +54,32 @@ function prepareList(data2) {
     );
     pupil.house = element.house; //no string manipulations needed in this element
 
-    arrayOfStudents.push(pupil); //puts created "pupils" to array of students
+    pupil.studentID = studentID;
+    pupil.imageUrl =
+      urlToImages + pupil.firstName + " " + pupil.lastName + ".jpg";
+    pupil.crestUrl = urlToCrests + pupil.firstName + " " + pupil.house + ".jpg";
+    arrayOfStudents.push(pupil); //puts created student entry into an array
+    studentID++;
   });
   filterList("All"); //no filtering needed now
 } //creates array of students (for each student element in JSON file a "pupil" object is created according to the template defined in const "student" and pushed to the array that was defined before)
-//each element in "pupil" a defined element from JSON is assigned
+//to each element in "pupil" a defined element from JSON is assigned
 
+/* --------------------------Filtering--------------------------------------------------------------------------------- */
 function showFilteredList() {
-  let houseSelect = document.querySelector(".filter");
-  filterList(houseSelect.value);
+  filterList(selectHouse.value);
 } //function activated on onclick in init function
 
-/*function filterList(filter) {
-  let arrayOfStudentsFiltered;
-  if (filter === "All") {
-    arrayOfStudentsFiltered = arrayOfStudents;
-  } else {
-    arrayOfStudentsFiltered = arrayOfStudents.filter(function(pupil) {
-      return pupil.house === filter; //The filter() method creates a new array with all elements that pass the test implemented by the provided function.
-    });
-  }
-  displayList(arrayOfStudentsFiltered);
-} //The filter() method creates a new array with all elements that pass the test implemented by the provided function. (MDN Array.prototype.filter)
-*/
-//////////////////////////////////////////////////////////////////////////////////////
-
 function filterList() {
-  let select = document.querySelector("#select");
   let filteredList = arrayOfStudents;
-  //console.log(select.value);
-
-  if (select.value === "All") {
+  //filtering
+  if (selectHouse.value === "All") {
     filteredList = arrayOfStudents;
-  } else if (select.value === "Hufflepuff") {
+  } else if (selectHouse.value === "Hufflepuff") {
     filteredList = arrayOfStudents.filter(function(pupil) {
       return pupil.house === "Hufflepuff";
     });
-  } else if (select.value === "Gryffindor") {
+  } else if (selectHouse.value === "Gryffindor") {
     filteredList = arrayOfStudents.filter(function(pupil) {
       return pupil.house === "Gryffindor";
     });
@@ -92,19 +93,74 @@ function filterList() {
     });
   }
   displayList(filteredList);
+  sort(filteredList);
 }
 
-/////////////////////////////////////////////////////////////////////////////////////v/////////////////
+/* --------------------------Sorting--------------------------------------------------------------------------------- */
 
-//displaying filtered elements - appending cloned templates to chosen divs
+function sort() {
+  let filteredList = arrayOfStudents;
+
+  if (selectSorting.value == "First Name") {
+    //sort the array
+    displayList(filteredList.sort(sortByFirstName));
+    //displayList(filteredList.sort(sortByFirstName));
+  } else if (selectSorting.value == "Last Name") {
+    //sort the array
+    displayList(filteredList.sort(sortByLastName));
+  } else if (selectSorting.value == "House") {
+    //sort the array
+    displayList(filteredList.sort(sortByHouse));
+  } /*else {
+    //show unsorted
+    displayList(filteredList.sort(sortByID));
+  }*/
+}
+
+function sortByLastName(a, b) {
+  if (a.lastName < b.lastName) {
+    return -1;
+  } else {
+    return 1;
+  }
+}
+
+function sortByFirstName(a, b) {
+  if (a.firstName < b.firstName) {
+    return -1;
+  } else {
+    return 1;
+  }
+}
+
+function sortByHouse(a, b) {
+  if (a.house < b.house) {
+    return -1;
+  } else {
+    return 1;
+  }
+}
+
 function displayList(arrayOfStudentsFiltered) {
   nameDiv.innerHTML = "";
   arrayOfStudentsFiltered.forEach(element => {
     let clone = template1.cloneNode(true).content;
     clone.querySelector(".name").innerHTML =
-      element.firstName + " " + element.lastName;
+      "<span class='student' id='student" +
+      element.studentID +
+      "'>" +
+      element.firstName +
+      " " +
+      element.lastName +
+      "</span>";
 
     nameDiv.appendChild(clone);
+  });
+
+  //get all student spans and add them onlick event
+  let studentSpans = document.querySelectorAll(".student");
+  studentSpans.forEach(studentSpan => {
+    studentSpan.addEventListener("click", showOneStudent);
   });
 
   houseDiv.innerHTML = "";
@@ -114,4 +170,44 @@ function displayList(arrayOfStudentsFiltered) {
 
     houseDiv.appendChild(clone2);
   });
+}
+
+function showOneStudent() {
+  showStudentDetail(this.id.substring(7)); //"This" always refers to the element that calls the function,The substring() method cuts of here the first 7 letters
+} //calls next function with id of clicked student
+
+function showStudentDetail(id) {
+  //styling the modal
+  let modalClass = arrayOfStudents[id].house; //modals need to have class added to make it possible to style them differently
+  modal.style.display = "block";
+  let modalContent = document.querySelector(".modalContent");
+
+  modalContent.classList.add(modalClass.toLowerCase()); //house class to lowercase because in array it starts with uppercase
+
+  //filling the modal with content
+  let nameDiv = document.querySelector(".studentInfo");
+  let hFirstName = document.querySelector("#hA");
+  let hAdditional = document.querySelector("#hB");
+  let hLastName = document.querySelector("#hC");
+  let pupilPhoto = document.querySelector("#pupilPhoto");
+  let crestPhoto = document.querySelector("#crestPhoto");
+
+  hFirstName.innerHTML = arrayOfStudents[id].firstName;
+  //nameDiv.innerHTML = arrayOfStudents[id].firstName + "<br />";
+  if (arrayOfStudents[id].additionalName.length > 1) {
+    //the condition checks if this student has an additional name
+    hAdditional.innerHTML = arrayOfStudents[id].additionalName;
+  } else {
+    hAdditional.innerHTML = "";
+  }
+  // the += sign is needed when the modal is filled dynamically because it adds created html elements to the div (if template is created in html it is not needed)
+  hLastName.innerHTML = arrayOfStudents[id].lastName;
+  pupilPhoto.src = arrayOfStudents[id].imageUrl;
+  crestPhoto.src = arrayOfStudents[id].crestUrl;
+
+  modalClose.onclick = function() {
+    modal.style.display = "none";
+    let modalContent = document.querySelector(".modalContent");
+    modalContent.classList.remove(modalClass.toLowerCase());
+  };
 }

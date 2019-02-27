@@ -8,16 +8,30 @@
   </head>
   <body>
     <h1>Students 1991</h1>
-    <main>
-      Select house:
-      <select class="filter" id="select">
-        <option value="All">All</option>
-        <option value="Hufflepuff">Hufflepuff</option>
-        <option value="Gryffindor">Gryffindor</option>
-        <option value="Ravenclaw">Ravenclaw</option>
-        <option value="Slytherin">Slytherin</option> </select
-      ><input type="button" id="filterButton" value="Show" />
-      <div class="wrapper">
+    <main id="mainWrapper">
+      <div id="wrapperFiltering">
+        <h5>Select house:</h5>
+        <select class="filter" id="select">
+          <option value="All">All</option>
+          <option value="Hufflepuff">Hufflepuff</option>
+          <option value="Gryffindor">Gryffindor</option>
+          <option value="Ravenclaw">Ravenclaw</option>
+          <option value="Slytherin">Slytherin</option>
+        </select>
+        <input type="button" id="filterButton" value="Show filtering" />
+      </div>
+      <div id="wrapperSorting">
+        <h5>Select sorting:</h5>
+        <select class="filter" id="sort">
+          <option value=""></option>
+          <option value="First Name">First Name a-z</option>
+          <option value="Last Name">Last Name a-z</option>
+          <option value="House">House</option>
+        </select>
+        <input type="button" id="sortingButton" value="Show sorting" />
+      </div>
+
+      <div class="listWrapper">
         <div class="Name-h"><h3>Student's name:</h3></div>
         <div class="House-h"><h3>House:</h3></div>
 
@@ -35,6 +49,21 @@
         <p class="house"></p>
       </template>
     </main>
+
+    <!-- The Modal from https://www.w3schools.com/howto/howto_css_modals.asp -->
+    <div id="modalWrapper" class="modal">
+      <!-- Modal content -->
+      <div class="modalContent">
+        <span class="modalClose">&times;</span>
+
+        <div class="studentInfo"></div>
+        <h5 id="hA">FIRST NAME</h5>
+        <h5 id="hB">ADDITIONAL NAME</h5>
+        <h5 id="hC">LAST NAME</h5>
+        <img src="" alt="No pupil photo" id="pupilPhoto" />
+        <img src="" alt="No crest photo" id="crestPhoto" />
+      </div>
+    </div>
 
     <script src="studentlist.js"></script>
   </body>
