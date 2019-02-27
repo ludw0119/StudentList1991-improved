@@ -19,7 +19,7 @@ const student = {
 
 function init() {
   //console.log("init");
-  fetch("http://petlatkea.dk/2019/hogwarts/students.json")
+  fetch("https://petlatkea.dk/2019/hogwarts/students.json")
     .then(promise => promise.json())
     .then(data => prepareList(data));
 
@@ -80,12 +80,12 @@ function filterList() {
     });
   } else if (select.value === "Gryffindor") {
     filteredList = arrayOfStudents.filter(function(pupil) {
-      return pupil.house === "Hufflepuff";
+      return pupil.house === "Gryffindor";
     });
   } else if (select.value === "Ravenclaw") {
     filteredList = arrayOfStudents.filter(function(pupil) {
       return pupil.house === "Ravenclaw";
-    });li
+    });
   } else if (select.value === "Slytherin") {
     filteredList = arrayOfStudents.filter(function(pupil) {
       return pupil.house === "Slytherin";
