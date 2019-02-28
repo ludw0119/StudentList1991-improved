@@ -9,7 +9,7 @@
   <body>
     <h1>Students 1991</h1>
     <main id="mainWrapper">
-      <div id="wrapperFiltering">
+      <div id="wrapperFilteringSorting">
         <h5>Select house:</h5>
         <select class="filter" id="select">
           <option value="All">All</option>
@@ -18,9 +18,6 @@
           <option value="Ravenclaw">Ravenclaw</option>
           <option value="Slytherin">Slytherin</option>
         </select>
-        <input type="button" id="filterButton" value="Show filtering" />
-      </div>
-      <div id="wrapperSorting">
         <h5>Select sorting:</h5>
         <select class="filter" id="sort">
           <option value=""></option>
@@ -28,7 +25,11 @@
           <option value="Last Name">Last Name a-z</option>
           <option value="House">House</option>
         </select>
-        <input type="button" id="sortingButton" value="Show sorting" />
+      </div>
+      <div id="wrapperButton">
+        <input type="button" id="filterButton" value="Show" />
+
+        <!--<input type="button" id="sortingButton" value="Show sorting" />-->
       </div>
 
       <div class="listWrapper">

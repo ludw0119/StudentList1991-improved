@@ -26,18 +26,19 @@ body {
 #mainWrapper{
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
-  grid-template-rows: 1fr;
+  grid-template-rows: 1fr 3fr;
   grid-template-areas: 
-  "area01 area02 area03";
+  "area01 area02 ."
+  "area04 area02 .";
   padding: 0vw 20vw 0vw 20vw;
 }
 
-#wrapperFiltering{
+#wrapperFilteringSorting{
 grid-area: area01;
 }
 
-#wrapperSorting{
-grid-area: area03;
+#wrapperButton{
+grid-area: area04;
 }
 .listWrapper {
   grid-area: area02;
@@ -176,8 +177,8 @@ text-decoration: none;
 cursor: pointer;
 }
 
-#filterButton, #sortingButton {
-float: right;
+#filterButton{
+float: left;
 border-radius: 7px;
 border-color: #b3c8ce;
 border: 1px;
@@ -189,13 +190,17 @@ font-size: 12px;
 padding: 10px 10px;
 text-align: center;
 border-style: solid;
-margin: 3px;
+margin: 30px 0 0 0;
 text-transform: uppercase;
 font-weight: 700;
 }
 
-#filterButton:hover, #sortingButton:hover{
+#filterButton:hover{
 box-shadow: 0px 0px 50px #0099ff;
 text-shadow: 4px 4px 10px #0099ff;
 color: white;
+}
+
+.filter{
+  width: 120px;
 }

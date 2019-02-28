@@ -9,12 +9,12 @@ let template2 = document.querySelector(".location");
 let modal = document.querySelector(".modal");
 let modalClose = document.querySelector(".modalClose");
 let selectHouse = document.querySelector("#select");
-let selectSorting = document.querySelector("#sort");
-let filteringEffect = [];
+//let selectSorting = document.querySelector("#sort");
+//let filteringEffect = [];
 const arrayOfHouses = []; //to use with select
 const arrayOfStudents = []; //array that is used with the student template
-const urlToImages = "http://dont.know.yet/";
-const urlToCrests = "http://dont.know.yet/";
+let urlToImages;
+let urlToCrests;
 
 function init() {
   //console.log("init");
@@ -26,7 +26,7 @@ function init() {
     .querySelector("#filterButton")
     .addEventListener("click", showFilteredList);
 
-  document.querySelector("#sortingButton").addEventListener("click", sort);
+  //document.querySelector("#sortingButton").addEventListener("click", sort);
 }
 /* --------------------------Preparing additional object that is needed for filtering-------------------- */
 
@@ -77,16 +77,18 @@ function showFilteredList() {
 } //function activated on onclick in init function
 
 function filterList() {
+  let select = document.querySelector("#select");
+  let sort = document.querySelector("#sort");
   let filteredList = arrayOfStudents;
+  //console.log(select.value);
 
-  //filtering
-  if (selectHouse.value === "All") {
+  if (select.value === "All") {
     filteredList = arrayOfStudents;
-  } else if (selectHouse.value === "Hufflepuff") {
+  } else if (select.value === "Hufflepuff") {
     filteredList = arrayOfStudents.filter(function(pupil) {
       return pupil.house === "Hufflepuff";
     });
-  } else if (selectHouse.value === "Gryffindor") {
+  } else if (select.value === "Gryffindor") {
     filteredList = arrayOfStudents.filter(function(pupil) {
       return pupil.house === "Gryffindor";
     });
@@ -99,31 +101,23 @@ function filterList() {
       return pupil.house === "Slytherin";
     });
   }
-  filteringEffect = filteredList;
-  displayList(filteredList);
-  //sort(filteredList);
-}
-
-/* --------------------------Sorting--------------------------------------------------------------------------------- */
-
-function sort() {
-  let filteredList = filteringEffect;
-
-  if (selectSorting.value == "First Name") {
+  if (sort.value == "First Name") {
     //sort the array
     displayList(filteredList.sort(sortByFirstName));
     //displayList(filteredList.sort(sortByFirstName));
-  } else if (selectSorting.value == "Last Name") {
+  } else if (sort.value == "Last Name") {
     //sort the array
     displayList(filteredList.sort(sortByLastName));
-  } else if (selectSorting.value == "House") {
+  } else if (sort.value == "House") {
     //sort the array
     displayList(filteredList.sort(sortByHouse));
-  } /*else {
+  } else {
     //show unsorted
     displayList(filteredList.sort(sortByID));
-  }*/
+  }
 }
+
+/* --------------------------Sorting--------------------------------------------------------------------------------- */
 
 function sortByLastName(a, b) {
   if (a.lastName < b.lastName) {
@@ -143,6 +137,14 @@ function sortByFirstName(a, b) {
 
 function sortByHouse(a, b) {
   if (a.house < b.house) {
+    return -1;
+  } else {
+    return 1;
+  }
+}
+
+function sortByID(a, b) {
+  if (a.studentID < b.studentID) {
     return -1;
   } else {
     return 1;
