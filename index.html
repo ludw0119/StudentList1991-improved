@@ -7,10 +7,22 @@
     <link rel="stylesheet" href="studentlist.css" type="text/css" />
   </head>
   <body>
-    <h1>Students 1991</h1>
+    <header>
+      <div class="fullWarning">
+        This person is not worth to be a part of The Squad
+      </div>
+      <div class="visualWarning">
+        I don't like you anymore
+      </div>
+      <h1>Students 1991</h1>
+      <h4 id="counting">
+        Expelled: <span id="ExpelledNo"></span>
+        <span id="HousesNo"></span>
+      </h4>
+    </header>
     <main id="mainWrapper">
       <div id="wrapperFilteringSorting">
-        <h5>Select house:</h5>
+        <h4>SELECT HOUSE:</h4>
         <select class="filter" id="select">
           <option value="All">All</option>
           <option value="Hufflepuff">Hufflepuff</option>
@@ -18,7 +30,7 @@
           <option value="Ravenclaw">Ravenclaw</option>
           <option value="Slytherin">Slytherin</option>
         </select>
-        <h5>Select sorting:</h5>
+        <h4>SELECT SORTING:</h4>
         <select class="filter" id="sort">
           <option value=""></option>
           <option value="First Name">First Name a-z</option>
@@ -44,6 +56,7 @@
 
       <template class="student">
         <p class="name"></p>
+        <button data-action="remove" id="removebutton">X</button>
       </template>
 
       <template class="location">
@@ -58,9 +71,13 @@
         <span class="modalClose">&times;</span>
 
         <div class="studentInfo"></div>
-        <h5 id="hA">FIRST NAME</h5>
-        <h5 id="hB">ADDITIONAL NAME</h5>
-        <h5 id="hC">LAST NAME</h5>
+        <h5>
+          <span id="hA">FIRST NAME</span>&nbsp;<span id="hC"
+            >ADDITIONAL NAME</span
+          ><span id="hB">LAST NAME</span>
+        </h5>
+        <h4 id="squadInfo"></h4>
+        <h4 id="bloodDetails"></h4>
         <img src="" alt="No pupil photo" id="pupilPhoto" />
         <img src="" alt="No crest photo" id="crestPhoto" />
       </div>
