@@ -4,22 +4,22 @@ body {
 }
 
 .gryffindor {
-  background-color: #ce3a0a;
+  background-color: rgba(206, 58, 10, 0.8);
   color: #fdb02e;
 }
 
 .hufflepuff {
-  background-color: #ffc02a;
+  background-color: rgba(255, 192, 42, 0.8);
   color: #0b0000;
 }
 
 .ravenclaw {
-  background-color: #395f9d;
+  background-color: rgba(57, 95, 157, 0.8);
   color: #e9ba36;
 }
 
 .slytherin {
-  background-color: #588c39;
+  background-color:rgba(88, 140, 57, 0.8);
   color: #c0b1c6;
 }
 
@@ -35,6 +35,20 @@ body {
 
 #wrapperFilteringSorting{
 grid-area: area01;
+}
+
+.removeButton{
+float: right;
+margin-right: 35px;
+border-radius: 7px;
+border-color: #b3c8ce;
+border: 1px;
+color: #b3c8ce;
+background-color: transparent;
+font-size: 12px;
+text-align: center;
+border-style: solid;
+font-weight: 700;
 }
 
 #wrapperButton{
@@ -82,17 +96,22 @@ p {
     grid-template-rows: auto;
     grid-template-areas: 
     "area11 area22";
-    height: 70vh;
-    overflow: auto;
+    height: 65vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 
 .name{
     grid-area: area11;
+    display: inline-block;
+    position: relative;
+    margin-top: 0px;
 }
 
 .house{
     grid-area: area22;
+    margin-top: 0px;
 }
 
 /*Scrollbar style. Credits: https://css-tricks.com/the-current-state-of-styling-scrollbars/*/
@@ -153,18 +172,22 @@ height: 100%; /* Full height */
 overflow: auto; /* Enable scroll if needed */
 background-color: rgb(0,0,0); /* Fallback color */
 background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+border-radius: 20px;
 }
+
 /* Modal Content/Box */
 .modalContent {
 margin: 15% auto; /* 15% from the top and centered */
-padding: 20px;
-border: 1px solid #888;
-width: 80%; /* Could be more or less, depending on screen size */
+border: 10px solid #b3c8ce;
+width: 359px; /* Could be more or less, depending on screen size */
+height: 170px;
+border-radius: 20px;
+padding: 5vw;
 }
 
 /* The Close Button */
 .modalClose {
-color: #aaa;
+color: black;
 float: right;
 font-size: 28px;
 font-weight: bold;
@@ -172,9 +195,13 @@ font-weight: bold;
 
 .modalClose:hover,
 .modalClose:focus {
-color: black;
+color:gainsboro;
 text-decoration: none;
 cursor: pointer;
+}
+
+#modalWrapper{
+  border-radius: 20px;
 }
 
 #filterButton{
@@ -193,14 +220,61 @@ border-style: solid;
 margin: 30px 0 0 0;
 text-transform: uppercase;
 font-weight: 700;
+box-shadow: 0px 0px 50px #0099ff;;
+text-shadow: 4px 4px 10px #0099ff;
 }
 
 #filterButton:hover{
-box-shadow: 0px 0px 50px #0099ff;
-text-shadow: 4px 4px 10px #0099ff;
+box-shadow: none;
+text-shadow: none;
 color: white;
 }
 
 .filter{
   width: 120px;
+}
+
+
+
+.student:hover{
+box-shadow: 0px 0px 50px #0099ff;;
+text-shadow: 4px 4px 10px #0099ff;
+}
+
+#crestPhoto{
+  float: right;
+}
+
+#hA, #hB, #hC{
+  font-size: 1.5em;
+}
+
+.fullWarning{
+  width: 100%;
+  height: 100%;
+  background: orange;
+  display:none;
+}
+
+.visualWarning{
+  width: 100%;
+  height: 100%;
+  background: purple;
+  display:none;
+}
+
+.squadWarning{
+  width: 100%;
+  height: 100%;
+  background: yellow;
+  display:none;
+}
+
+.removeStudent:hover{
+  box-shadow: 0px 0px 50px red;
+text-shadow: 4px 4px 10px red;
+}
+
+#counting{
+margin: 0px;
 }
