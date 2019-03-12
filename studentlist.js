@@ -50,6 +50,7 @@ function clickRemove(toBeRemoved) {
 }
 
 function showVisualWarning() {
+  //console.log("visual");
   document.querySelector(".visualWarning").style.display = "block";
   setTimeout(function() {
     document.querySelector(".visualWarning").style.display = "none";
@@ -73,14 +74,6 @@ function checkifItsMe(toBeRemoved) {
     return true;
   }
 }
-
-/*function showVisualWarning() {
-  document.querySelector(".visualWarning").style.display = "block";
-  setTimeout(function() {
-    document.querySelector(".visualWarning").style.display = "none";
-  }, 3000);
-  return false;
-}*/
 
 function getJSON() {
   fetch("https://petlatkea.dk/2019/hogwarts/students.json")
